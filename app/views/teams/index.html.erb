@@ -1,0 +1,30 @@
+<h1>Listing teams</h1>
+<a href="<%= god_url %>">Back to God home</a>
+
+<p>DO NOT change the name of the god account.</p>
+
+<table>
+  <tr>
+    <th>Team name</th>
+    <th>Internal name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teams.each do |team| %>
+  <tr>
+    <td><%= team.team_name %></td>
+    <td><%= team.internal_name %></td>
+    <td><%= link_to 'Show', team %></td>
+    <td><%= link_to 'Edit', edit_team_path(team) %></td>
+    <% if team.team_name != 'god' %>
+    <td><%= link_to 'Destroy', team, :method => :delete, :confirm => "Really delete?" %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Team', new_team_path %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+
+<h1><%= @puzzle.puzzle_name %></h1>
+<p>Internal name for urls, etc.: <b><%= @puzzle.internal_name %></b></p>
+<h3>Body of puzzle:</h3>
+<div class="puzzleFormBodyCont"><%= @puzzle.body.html_safe %></div>
+<% if @puzzle.starts_unlocked %>
+<p>This puzzle will be <b>unlocked</b> at the beginning of the hunt.</p>
+<% else %>
+<p>This puzzle is <b>locked</b> by default.</p>
+<% end %>
+<% if @puzzle.linked_puzzles.empty? then %>
+<p>This puzzle does not have any neighbors. This is possibly a problem that needs to be fixed!</p>
+<% else %>
+<p>This puzzle is neighbors with:</p>
+<ul>
+<% @puzzle.linked_puzzles.each do |p| %>
+<li><%= p.puzzle_name %> &emsp;<%= link_to 'link', p %></li>
+<% end %>
+</ul>
+<% end %>
+
+<%= link_to 'Edit', edit_puzzle_path(@puzzle) %> |
+<%= link_to 'Back', puzzles_path %>

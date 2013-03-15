@@ -1,7 +1,17 @@
 PostPro::Application.routes.draw do
-  get "puzzles/index"
-  match 'puzzles' => 'puzzles#index'
-  match 'puzzles/:id' => 'puzzles#puzzle'
+
+  resources :teams do
+    collection do
+      get 'genpassword'
+    end
+  end
+
+  resources :puzzles 
+  match 'god' => 'puzzles#god'
+
+  match 'login' => 'login#login', :via => :post
+  match 'logout' => 'login#logout'
+  root :to => 'login#index'
 
   # get "login/index"
 
@@ -54,7 +64,6 @@ PostPro::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'login#index'
 
   # See how all your routes lay out with "rake routes"
 

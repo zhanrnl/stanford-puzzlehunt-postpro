@@ -1,0 +1,6 @@
+<h1>Stanford Puzzle Hunt</h1>
+<p>Logged in as team: <%= session[:team_name] %>&emsp;<a href='/logout'>Logout</a>
+<h2>Unlocked puzzles (includes solved)</h2>
+<% @unlocked_puzzles.each do |puzzle| %>
+<div><%= puzzle.puzzle_name %></div>
+<% end %>

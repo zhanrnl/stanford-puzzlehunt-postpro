@@ -1,2 +1,26 @@
-<h1>Puzzles#index</h1>
-<p>Find me in app/views/puzzles/index.html.erb</p>
+<h1>Listing puzzles</h1>
+<a href="<%= god_url %>">Back to God home</a>
+
+<table>
+  <tr>
+    <th>Puzzle name</th>
+    <th>Internal name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @puzzles.each do |puzzle| %>
+  <tr>
+    <td><%= puzzle.puzzle_name %></td>
+    <td><%= puzzle.internal_name %></td>
+    <td><%= link_to 'Show', puzzle %></td>
+    <td><%= link_to 'Edit', edit_puzzle_path(puzzle) %></td>
+    <td><%= link_to 'Destroy', puzzle, confirm: 'Really delete?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Puzzle', new_puzzle_path %>

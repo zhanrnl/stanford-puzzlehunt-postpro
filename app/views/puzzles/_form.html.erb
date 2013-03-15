@@ -1,0 +1,31 @@
+<%= form_for(@puzzle, :html => {:autocomplete => "off"}) do |f| %>
+  <% if @puzzle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@puzzle.errors.count, "error") %> prohibited this puzzle from being saved:</h2>
+
+      <ul>
+      <% @puzzle.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>Puzzle name: <%= f.text_field :puzzle_name %></p>
+  <p>Internal puzzle name: <%= f.text_field :internal_name, :class => :internalNameField, :readonly => :readonly %></p>
+  <p>Puzzle body (html): </p>
+  <%= f.text_area :body %>
+  <p>Starts unlocked: <%= f.check_box :starts_unlocked %></p>
+  <p>Neighbors to this puzzle in the unlocking graph:</p>
+  <ul>
+    <% @other_puzzles.each do |p| %>
+    <li><%= check_box_tag ("neighbor_" + p.id.to_s), 1, (@puzzle.linked_puzzles.include? p) %>&ensp;<%= p.puzzle_name %></li>
+    <% end %>
+  </ul>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= render "shared/js_link", :src => "puzzlecreate" %>

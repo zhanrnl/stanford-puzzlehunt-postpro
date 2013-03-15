@@ -2,7 +2,9 @@
 <html>
 <head>
   <title><%= yield :title %></title>
-  <%= render "shared/js_link", :src => "myjs" %>
+  <%= render "shared/css_link", :src => "main" %>
+  <%= render "shared/js_link", :src => "jquery-1.9.1.min" %>
+  <%= render "shared/js_link", :src => "rails" %>
   <%= csrf_meta_tags %>
 </head>
 <body>

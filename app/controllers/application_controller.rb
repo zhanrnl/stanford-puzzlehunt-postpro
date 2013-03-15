@@ -1,19 +1,27 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def kick_unauth_team
-    redirect_to "/" if session[:team_name] == nil
+  def is_team?
+    session.has_key? :team_name
   end
 
-  def welcome_auth_team
-    redirect_to "/puzzles" if session[:team_name] != nil
+  def is_god?
+    session[:team_name] == "god"
   end
 
-  def kick_nongod
-    redirect_to "/" if session[:team_name] != "god"
+  def kick
+    redirect_to root_path
   end
 
-  def welcome_auth_god
-    redirect_to "/god" if session[:team_name] == "god"
+  def del_sess_name
+    session.delete :team_name
+  end
+
+  def get_sess_name
+    session[:team_name]
+  end
+
+  def set_sess_name (name)
+    session[:team_name] = name
   end
 end

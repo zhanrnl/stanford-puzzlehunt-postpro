@@ -11,28 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310022745) do
+ActiveRecord::Schema.define(:version => 20130313204102) do
+
+  create_table "puzzle_links", :force => true do |t|
+    t.integer "puzzle1_id"
+    t.integer "puzzle2_id"
+  end
 
   create_table "puzzles", :force => true do |t|
+    t.string   "internal_name"
     t.string   "puzzle_name"
-    t.string   "long_name"
     t.text     "body"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.boolean  "starts_unlocked"
   end
 
   create_table "solves", :force => true do |t|
     t.datetime "time_solved"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "team_id"
+    t.integer  "puzzle_id"
   end
 
   create_table "teams", :force => true do |t|
-    t.string   "team_name"
+    t.string   "internal_name"
     t.string   "pass_hash"
-    t.string   "long_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "team_name"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

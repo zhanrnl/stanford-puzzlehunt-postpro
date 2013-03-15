@@ -1,0 +1,24 @@
+<%= form_for(@team, :html => {:autocomplete => "off"}) do |f| %>
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+      <% @team.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>Team name: <%= f.text_field :team_name %></p>
+  <p>Internal team name: <%= f.text_field :internal_name, :class => :internalNameField, :readonly => :readonly %></p>
+  <p>Password: <%= f.text_field :pass_hash %> <%= button_tag "Generate awesome password", :type => :button, :id => :genpassword %></p>
+  <p>Password needs to be hashed: <%= check_box_tag :do_hash, 1, @mode==:new %></p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= render "shared/js_link", :src => "teamcreate" %>
