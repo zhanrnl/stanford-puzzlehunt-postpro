@@ -1,6 +1,22 @@
 <h1>Stanford Puzzle Hunt</h1>
-<p>Logged in as team: <%= session[:team_name] %>&emsp;<a href='/logout'>Logout</a>
-<h2>Unlocked puzzles (includes solved)</h2>
-<% @unlocked_puzzles.each do |puzzle| %>
-<div><%= puzzle.puzzle_name %></div>
+<p>Logged in as team:&emsp;<%= session[:team_name] %>&emsp;<a href='/logout'>Logout</a>
+<h2>Puzzles</h2>
+<table>
+<% @puzzles.each do |p| %>
+<tr>
+  <td><%= p.puzzle_name %></td>
+  <td>
+    <% if @unlocked_puzzles.include? p %>
+    <%= link_to "link to puzzle", puzzle_url_name(p) %>
+    <% else %>
+    <b>locked</b>
+    <% end %>
+  </td>
+  <td>
+    <% if @solved_puzzles.include? p %>
+    <b>solved</b>
+    <% end %>
+  </td>
+</tr>
 <% end %>
+</table>

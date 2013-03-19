@@ -2,15 +2,14 @@ class PuzzlesController < ApplicationController
   # GET /puzzles
   # GET /puzzles.json
   def index
-    (kick and return) if not is_team?
+    kick and return if not is_team?
 
     @puzzles = Puzzle.all
 
     # render puzzle hunt index page teams will see
     if not is_god? 
-      @unlocked_puzzles = @puzzles.select do |p|
-        p.starts_unlocked == true
-      end
+      @unlocked_puzzles = unlocked_puzzles
+      @solved_puzzles = (get_team).puzzles
       render 'huntindex' and return
     end
 
@@ -21,16 +20,42 @@ class PuzzlesController < ApplicationController
     end
   end
 
+  def get_team
+    Team.where('internal_name = ?', get_sess_name).first
+  end
+
+  def unlocked_puzzles
+    team = get_team
+    solved_puzzles = team.puzzles.to_a
+    neighbors = solved_puzzles.map do |p|
+      p.linked_puzzles.to_a
+    end.flatten
+    starts_unlocked = Puzzle.where('starts_unlocked = ?', true).to_a
+    (solved_puzzles + neighbors + starts_unlocked).uniq
+  end
+
   def has_team_solved?(puzzle)
-    team = Team.where('internal_name = ?', get_sess_name).first
+    team = get_team
     solved_puzzles = team.puzzles.to_a
     solved_puzzles.include? puzzle
+  end
+
+  def is_unlocked?(puzzle)
+    unlocked_puzzles.include? puzzle
   end
 
   # GET /puzzles/1
   # GET /puzzles/1.json
   def show
-    (kick and return) if not is_god?
+    (kick and return) if not is_team?
+
+    if not is_god?
+      @puzzle = Puzzle.where('internal_name = ?', params[:id]).first
+      if @puzzle.nil? or not is_unlocked?(@puzzle)
+        raise ActionController::RoutingError.new('Puzzle not found') 
+      end
+      render 'huntshow' and return
+    end
 
     @puzzle = Puzzle.find(params[:id])
 
@@ -43,7 +68,7 @@ class PuzzlesController < ApplicationController
   # GET /puzzles/new
   # GET /puzzles/new.json
   def new
-    (kick and return) if not is_god?
+    kick and return if not is_god?
     @puzzle = Puzzle.new
     @other_puzzles = Puzzle.all
 
@@ -55,7 +80,7 @@ class PuzzlesController < ApplicationController
 
   # GET /puzzles/1/edit
   def edit
-    (kick and return) if not is_god?
+    kick and return if not is_god?
     @puzzle = Puzzle.find(params[:id])
     @other_puzzles = Puzzle.all - [@puzzle]
   end
@@ -63,7 +88,7 @@ class PuzzlesController < ApplicationController
   # POST /puzzles
   # POST /puzzles.json
   def create
-    (kick and return) if not is_god?
+    kick and return if not is_god?
     @puzzle = Puzzle.new(params[:puzzle])
     link_ids = extract_link_ids(params)
     link_ids.each do |lid|
@@ -94,7 +119,7 @@ class PuzzlesController < ApplicationController
   # PUT /puzzles/1
   # PUT /puzzles/1.json
   def update
-    (kick and return) if not is_god?
+    kick and return if not is_god?
     @puzzle = Puzzle.find(params[:id])
     @puzzle.linked_puzzles.clear
     link_ids = extract_link_ids(params)
@@ -116,7 +141,7 @@ class PuzzlesController < ApplicationController
   # DELETE /puzzles/1
   # DELETE /puzzles/1.json
   def destroy
-    (kick and return) if not is_god?
+    kick and return if not is_god?
     @puzzle = Puzzle.find(params[:id])
     @puzzle.destroy
 
@@ -128,6 +153,52 @@ class PuzzlesController < ApplicationController
 
   # /puzzles/god
   def god
-    (kick and return) if not is_god?
+    kick and return if not is_god?
+  end
+
+  def callin
+    @puzzle = Puzzle.where('internal_name = ?', params[:id]).first
+    if @puzzle.nil? or not is_unlocked?(@puzzle)
+      raise ActionController::RoutingError.new('Puzzle not found') 
+    end
+    team = get_team
+    @solved = Solve.where('puzzle_id = ? AND team_id = ?', @puzzle.id, team.id).first
+    if @solved.nil?
+      @callin = Callin.new
+    end
+    @previous_callins = Callin.where('puzzle_id = ? AND team_id = ?', @puzzle.id, team.id).to_a
+  end
+
+  def post_callin
+    @puzzle = Puzzle.where('internal_name = ?', params[:id]).first
+    if @puzzle.nil? or not is_unlocked?(@puzzle)
+      raise ActionController::RoutingError.new('Puzzle not found') 
+    end
+
+    puzzle_url = "/puzzles/#{@puzzle.internal_name}/callin"
+
+    team_id = get_team().id
+    if Callin.where('team_id = ? AND puzzle_id = ? AND answered = "f"', team_id, @puzzle.id).count > 0
+      redirect_to puzzle_url, :alert => :too_many
+      return
+    end
+
+    params[:callin][:puzzle_id] = @puzzle.id
+    params[:callin][:team_id] = team_id
+    params[:callin][:time_called] = Time.now
+    params[:callin][:answered] = false
+    @callin = Callin.new(params[:callin])
+
+    missing_info = (params[:callin][:answer].empty? or params[:callin][:phone_num].empty?)
+    if missing_info
+      redirect_to puzzle_url, :alert => :missing_info
+      return
+    end 
+
+    if @callin.save
+      redirect_to puzzle_url, :alert => :success
+    else
+      redirect_to puzzle_url, :alert => :missing_info
+    end
   end
 end

@@ -1,12 +1,25 @@
 PostPro::Application.routes.draw do
 
+  get 'queue/index'
+  match 'queue' => 'queue#index'
+  match 'queue/numcallins' => 'queue#get_num_callins'
+  match 'queue/dequeue' => 'queue#dequeue_callin'
+  match 'queue/correct' => 'queue#correct'
+  match 'queue/incorrect' => 'queue#incorrect'
+  match 'queue/requeue' => 'queue#requeue'
+
   resources :teams do
     collection do
       get 'genpassword'
     end
   end
 
-  resources :puzzles 
+  resources :puzzles do
+    member do
+      get 'callin'
+      post 'post_callin'
+    end
+  end
   match 'god' => 'puzzles#god'
 
   match 'login' => 'login#login', :via => :post

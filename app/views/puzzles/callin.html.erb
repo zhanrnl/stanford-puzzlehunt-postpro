@@ -1,0 +1,38 @@
+<%= link_to "Back to puzzle", puzzle_url_name(@puzzle) %>
+<% if @solved.nil? %>
+  <h2>Call in an answer for <%= @puzzle.puzzle_name %></h2>
+  <% if alert == :success %>
+    <p>Successfully submitted your answer. We will call you back very soon!</p>
+  <% elsif alert == :missing_info %>
+    <p>Must enter both an answer and a valid phone number so we can call you.</p>
+  <% elsif alert == :too_many %>
+    <p>Cannot submit a new call-in yet! You must wait for us to respond to your first call-in.</p>
+  <% end %>
+  <%= form_for(@callin, :url => post_callin_puzzle_url_name(@puzzle), :html => {:autocomplete => "off"}) do |f| %>
+    <div>Answer: <%= f.text_field :answer %></div>
+    <div>Phone number, format must be XXX-XXX-XXXX: <%= f.text_field :phone_num %></div>
+    <%= f.submit "Call in answer" %>
+  <% end %>
+<% else %>
+  <h2>You have solved this puzzle!</h2>
+  <p>The answer was <%= @puzzle.answer %></p>
+<% end %>
+<p></p>
+<% if @previous_callins.empty? %>
+  <p>No previous callins.</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Submitted answer</th>
+      <th>Phone number</th>
+      <th>Time submitted</th>
+    </tr>
+    <% @previous_callins.each do |c| %>
+    <tr>
+      <td><%= c.answer %></td>
+      <td><%= c.phone_num %></td>
+      <td><%= c.time_called %></td>
+    </tr>
+    <% end %>
+  <table>
+<% end %>

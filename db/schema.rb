@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130313204102) do
+ActiveRecord::Schema.define(:version => 20130318230923) do
+
+  create_table "callins", :force => true do |t|
+    t.integer  "puzzle_id"
+    t.integer  "team_id"
+    t.string   "answer"
+    t.string   "phone_num"
+    t.datetime "time_called"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.boolean  "answered"
+  end
 
   create_table "puzzle_links", :force => true do |t|
     t.integer "puzzle1_id"
@@ -25,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130313204102) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.boolean  "starts_unlocked"
+    t.string   "answer"
   end
 
   create_table "solves", :force => true do |t|

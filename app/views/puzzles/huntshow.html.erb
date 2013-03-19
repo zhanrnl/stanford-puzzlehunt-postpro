@@ -1,0 +1,4 @@
+<div><%= link_to "Back to puzzles index", puzzles_path %></div>
+<div><%= link_to "Call in an answer or check previously called-in answers", callin_puzzle_path %></div>
+<h1><%= @puzzle.puzzle_name %></h1>
+<%= @puzzle.body.html_safe %>

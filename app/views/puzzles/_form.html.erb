@@ -13,6 +13,7 @@
 
   <p>Puzzle name: <%= f.text_field :puzzle_name %></p>
   <p>Internal puzzle name: <%= f.text_field :internal_name, :class => :internalNameField, :readonly => :readonly %></p>
+  <p>Puzzle answer (all caps recommended): <%= f.text_field :answer %></p>
   <p>Puzzle body (html): </p>
   <%= f.text_area :body %>
   <p>Starts unlocked: <%= f.check_box :starts_unlocked %></p>

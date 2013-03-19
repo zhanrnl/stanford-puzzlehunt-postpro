@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  puzzle_id: 1
+  team_id: 1
+  answer: MyString
+  phone_num: MyString
+  time_called: 2013-03-15 14:24:26
+  comments: MyText
+
+two:
+  puzzle_id: 1
+  team_id: 1
+  answer: MyString
+  phone_num: MyString
+  time_called: 2013-03-15 14:24:26
+  comments: MyText

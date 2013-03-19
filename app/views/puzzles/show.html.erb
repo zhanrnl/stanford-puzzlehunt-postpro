@@ -3,6 +3,7 @@
 
 <h1><%= @puzzle.puzzle_name %></h1>
 <p>Internal name for urls, etc.: <b><%= @puzzle.internal_name %></b></p>
+<p>Answer: <b><%= @puzzle.answer %></b></p>
 <h3>Body of puzzle:</h3>
 <div class="puzzleFormBodyCont"><%= @puzzle.body.html_safe %></div>
 <% if @puzzle.starts_unlocked %>

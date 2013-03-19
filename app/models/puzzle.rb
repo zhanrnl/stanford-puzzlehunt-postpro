@@ -6,6 +6,7 @@ class Puzzle < ActiveRecord::Base
   :after_add => :create_reverse_association, :after_remove => :remove_reverse_association
   validates :puzzle_name, :uniqueness => true, :presence => true
   validates :internal_name, :uniqueness => true, :presence => true
+  validates :answer, :presence => true
 
   def create_reverse_association(p)
     if not p.linked_puzzles.include? self then
