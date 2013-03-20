@@ -1,0 +1,18 @@
+<a href="<%= god_url %>">Back to God home</a>
+<h2>Upload a new puzzle resource</h2>
+<% if not alert.nil? and alert[:type] == :success %>
+  <p>Upload of file <%= alert[:filename] %> successful.</p>
+<% end %>
+<%= form_tag({:action => :upload}, :multipart => true) do %>
+  <div><%= file_field_tag :file %></div>
+  <div><%= submit_tag("Upload this file") %></div>
+<% end %>
+<% if @uploaded.empty? %>
+  <p>No resources uploaded yet.</p>
+<% else %>
+  <h2>Already uploaded resource files:</h2>
+  <p>These files can all be found at /resources/&lt;filename&gt;, so that's the url you should use for linking to resources when editing the puzzle html.</p>
+  <% @uploaded.each do |fn| %>
+    <div><%= fn %></div>
+  <% end %>
+<% end %>

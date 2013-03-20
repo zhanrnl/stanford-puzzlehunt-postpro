@@ -44,7 +44,8 @@ var GenVM = function() {
     self.showProcessing(true);
     $.post('/queue/correct', {
       id: self.callinID()
-    }, function() {
+    }, function(d) {
+      if (d == "error") alert("Something bad happened");
       self.updateNumCallins(function(){
         self.showCallin(false);
         self.showProcessing(false);
@@ -55,7 +56,7 @@ var GenVM = function() {
     self.showProcessing(true);
     $.post('/queue/incorrect', {
       id: self.callinID()
-    }, function() {
+    }, function(d) {
       self.updateNumCallins(function(){
         self.showCallin(false);
         self.showProcessing(false);
@@ -66,7 +67,8 @@ var GenVM = function() {
     self.showProcessing(true);
     $.post('/queue/requeue', {
       id: self.callinID()
-    }, function() {
+    }, function(d) {
+      if (d == "error") alert("Something bad happened");
       self.updateNumCallins(function(){
         self.showCallin(false);
         self.showProcessing(false);

@@ -21,6 +21,8 @@ PostPro::Application.routes.draw do
     end
   end
   match 'god' => 'puzzles#god'
+  match 'upload' => 'puzzles#upload', :via => :get
+  match 'upload' => 'puzzles#upload_post', :via => :post
 
   match 'login' => 'login#login', :via => :post
   match 'logout' => 'login#logout'

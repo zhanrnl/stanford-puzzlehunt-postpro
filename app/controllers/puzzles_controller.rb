@@ -201,4 +201,18 @@ class PuzzlesController < ApplicationController
       redirect_to puzzle_url, :alert => :missing_info
     end
   end
+
+  def upload
+    @uploaded = (Dir.entries "public/resources").select do |fn|
+      fn[0] != '.'
+    end
+  end
+
+  def upload_post
+    uploaded_io = params[:file]
+    File.open("public/resources/#{uploaded_io.original_filename}", 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    redirect_to upload_url, :alert => {:type => :success, :filename => uploaded_io.original_filename}
+  end
 end

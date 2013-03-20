@@ -24,8 +24,11 @@ class QueueController < ApplicationController
       :team_id => c.team_id, 
       :puzzle_id => c.puzzle_id, 
       :time_solved => c.time_called})
-    s.save
-    render :text => :okay
+    if s.save
+      render :text => :okay
+    else
+      render :text => :error
+    end
   end
 
   def incorrect
@@ -38,7 +41,11 @@ class QueueController < ApplicationController
     c = Callin.find(params[:id])
     c.answered = false
     c.save
-    render :text => :okay
+    if s.save
+      render :text => :okay
+    else
+      render :text => :error
+    end
   end
 
   def index
