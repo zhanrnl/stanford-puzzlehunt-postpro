@@ -21,6 +21,8 @@
 <% end %>
 </ul>
 <% end %>
+<p>This puzzle is <%= @puzzle.is_meta ? 'a meta' : 'a regular puzzle (not a meta)' %>.</p>
+<p>This puzzle requires <%= pluralize(@puzzle.neighbors_needed, 'unlocked neighboring puzzle') %> before it is unlocked.</p>
 
 <%= link_to 'Edit', edit_puzzle_path(@puzzle) %> |
 <%= link_to 'Back', puzzles_path %>

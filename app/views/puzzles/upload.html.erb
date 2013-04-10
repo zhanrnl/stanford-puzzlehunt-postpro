@@ -1,12 +1,37 @@
 <a href="<%= god_url %>">Back to God home</a>
 <h2>Upload a new puzzle resource</h2>
-<% if not alert.nil? and alert[:type] == :success %>
-  <p>Upload of file <%= alert[:filename] %> successful.</p>
+<% if not alert.nil? %>
+  <% if alert[:type] == :upload_success %>
+    <p>Successfully uploaded file.</p>
+  <% elsif alert[:type] == :delete_success %>
+    <p>Successfully deleted file.</p>
+  <% elsif alert[:type] == :nofile %>
+    <p>You must select a file.</p>
+  <% end %>
 <% end %>
 <%= form_tag({:action => :upload}, :multipart => true) do %>
   <div><%= file_field_tag :file %></div>
+  <div><%= text_field_tag 'notes', nil, :placeholder => 'Enter notes about this file here', :size => 50 %></div>
   <div><%= submit_tag("Upload this file") %></div>
 <% end %>
+<% if @uploaded.empty? %>
+  <p>No resources uploaded yet.</p>
+<% else %>
+  <p>In puzzle html, you must refer to the hashed filename, this is the filename that the files are actually stored under on the server, and the original filename is just for reference. All these files can be found at the url '/resources/&lt;hashedfilename&gt;'.</p>
+  <table>
+    <tr><th>Original filename</th><th>Hashed filename</th><th>Notes</th></tr>
+  <% @uploaded.each do |f| %>
+    <tr>
+      <td><%= f.original %></td>
+      <td><%= f.hashed %></td>
+      <td><%= f.notes %></td>
+      <td><%= link_to 'Delete', upload_delete_path(:original => f.original), {:confirm => 'Really delete?', :method => :POST} %></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+<%
+=begin %>
 <% if @uploaded.empty? %>
   <p>No resources uploaded yet.</p>
 <% else %>
@@ -16,3 +41,5 @@
     <div><%= fn %></div>
   <% end %>
 <% end %>
+<%
+=end %>

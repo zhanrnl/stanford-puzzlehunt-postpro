@@ -3,13 +3,15 @@
 <head>
   <title><%= yield :title %></title>
   <%= render "shared/css_link", :src => "main" %>
+  <%= render "shared/css_link", :src => "fontface" %>
   <%= render "shared/js_link", :src => "jquery-1.9.1.min" %>
   <%= render "shared/js_link", :src => "rails" %>
+  <%= render "shared/js_link", :src => "hackerbase" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="allContentContainer">
 <%= yield %>
-
+</div>
 </body>
 </html>

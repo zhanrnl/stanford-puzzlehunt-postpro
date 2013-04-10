@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318230923) do
+ActiveRecord::Schema.define(:version => 20130410002332) do
 
   create_table "callins", :force => true do |t|
     t.integer  "puzzle_id"
@@ -33,10 +33,20 @@ ActiveRecord::Schema.define(:version => 20130318230923) do
     t.string   "internal_name"
     t.string   "puzzle_name"
     t.text     "body"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.boolean  "starts_unlocked"
     t.string   "answer"
+    t.boolean  "is_meta",          :default => false
+    t.integer  "neighbors_needed", :default => 1
+  end
+
+  create_table "resources", :force => true do |t|
+    t.string   "original"
+    t.string   "hashed"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "notes"
   end
 
   create_table "solves", :force => true do |t|

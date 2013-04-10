@@ -1,3 +1,12 @@
+body {
+  font-family: "SourceCodeProRegular", monospace;
+  font-size: 1.0em;
+  color: #8f3;
+  background-color: black;
+  text-shadow: 0px 0px 10px rgba(30,140,0,1), 0px 0px 10px rgba(30,140,0,1);
+  background-image: url('/img/back.png');
+}
+
 .puzzleFormBodyCont {
   border: 1px solid black;
   padding: 10px;
@@ -5,4 +14,65 @@
 
 .hideDefault {
   display: none;
+}
+
+input, textarea, select {
+  font-family:inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: black;
+  border: 1px solid #4f1;
+  text-shadow: inherit;
+}
+
+b, h2, h1, h3 {
+  font-family: "SourceCodeProBold", monospace;
+}
+
+h1, h2, p {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.red {
+  color: #f22;
+  text-shadow: 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1);
+}
+
+.dim {
+  color: #161;
+  text-shadow: 0px 0px 10px rgba(20,90,20,1);
+}
+
+.allContentContainer {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.garbageContainer {
+  /*height: 60px;*/
+  overflow: hidden;
+  margin: 20px 0;
+  /*float: left;*/
+  /*width: 120px;*/
+}
+
+.mainContainer {
+  width:900px;
+  /*float:left;*/
+}
+
+.loginLabel {
+  width: 190px;
+}
+
+a {
+  color: #3bf;  
+  text-shadow: 0px 0px 12px rgba(0,100,255,1), 0px 0px 12px rgba(0,100,255,1), 0px 0px 12px rgba(0,100,255,1);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #cff; 
+  text-shadow: 0px 0px 10px rgba(240,240,255,1),  0px 0px 10px rgba(240,240,255,1),  0px 0px 30px rgba(0,150,255,1),  0px 0px 30px rgba(0,150,255,1);
 }

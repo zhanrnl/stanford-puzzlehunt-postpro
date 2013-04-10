@@ -20,9 +20,11 @@ PostPro::Application.routes.draw do
       post 'post_callin'
     end
   end
+
   match 'god' => 'puzzles#god'
   match 'upload' => 'puzzles#upload', :via => :get
   match 'upload' => 'puzzles#upload_post', :via => :post
+  match 'upload/delete' => 'puzzles#resource_delete'
 
   match 'login' => 'login#login', :via => :post
   match 'logout' => 'login#logout'

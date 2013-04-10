@@ -12,7 +12,7 @@ class LoginController < ApplicationController
     team = Team.where('internal_name = ?', internal_name).first;
     if team.nil? 
       del_sess_name
-      redirect_to root root_path, :alert => :wrong and return
+      redirect_to root_path, :alert => :wrong and return
     end
     ref_hash = team.pass_hash
     if test_hash != ref_hash

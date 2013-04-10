@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 class PuzzlesController < ApplicationController
   # GET /puzzles
   # GET /puzzles.json
@@ -203,16 +205,32 @@ class PuzzlesController < ApplicationController
   end
 
   def upload
-    @uploaded = (Dir.entries "public/resources").select do |fn|
-      fn[0] != '.'
-    end
+    @uploaded = Resource.all
+    # @uploaded = (Dir.entries "public/resources").select do |fn|
+    #   fn[0] != '.'
+    # end
   end
 
   def upload_post
     uploaded_io = params[:file]
-    File.open("public/resources/#{uploaded_io.original_filename}", 'wb') do |file|
+    if uploaded_io.nil?
+      redirect_to upload_url, :alert => {:type => :nofile}
+      return
+    end
+    fn = uploaded_io.original_filename
+    hashsource = Time.now.to_s + fn
+    extwithdot = fn.slice(fn.rindex('.'), fn.length)
+    hashfn = (Digest::SHA1.hexdigest hashsource).slice(0,8) + extwithdot
+    File.open("public/resources/#{hashfn}", 'wb') do |file|
       file.write(uploaded_io.read)
     end
-    redirect_to upload_url, :alert => {:type => :success, :filename => uploaded_io.original_filename}
+    r = Resource.new(:original => fn, :hashed => hashfn, :notes => params[:notes])
+    r.save
+    redirect_to upload_url, :alert => {:type => :upload_success}
+  end
+
+  def resource_delete
+    Resource.destroy_all(:original => params[:original])
+    redirect_to upload_url, :alert => {:type => :delete_success}
   end
 end

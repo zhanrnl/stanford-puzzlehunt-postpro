@@ -1,13 +1,38 @@
+<%= render "shared/js_link", :src => "loginhacker" %>
 <% title "Login" %>
 
-<h1>Login</h1>
-<% if alert == :wrong %>
-  <p>Wrong username or password, try again.</p>
-<% elsif alert == :logout %>
-  <p>Successfully logged out.</p>
+<% if alert.nil? %>
+<div class="loginLoading">
+  <h2 class="status" style="margin-top:100px"></h2>
+  <h2 class="loadingBar"></h2>
+</div>
 <% end %>
-<%= form_tag '/login' do -%>
-  <p><%= label_tag :internal_name, 'Team username:' %> <%= text_field_tag :internal_name %></p>
-  <p><%= label_tag :clear_pass, 'Password:' %> <%= password_field_tag :clear_pass %></p>
-  <div><%= submit_tag 'Login' %></div>
-<% end -%>
+<div class="mainContentContainer">
+  <div class="garbageContainer dim">
+    <div class="garbage"></div>
+    <div class="garbage"></div>
+    <div class="garbage"></div>
+    <div class="garbage"></div>
+  </div>
+  <h2 class="hacker">Stanford Puzzle Hunt</h2>
+  <h1>&lt;&lt;&lt;&lt;&lt;<span class="hacker">Hacker Login Interface</span>&gt;&gt;&gt;&gt;&gt;</h1>
+  <p class="hacker">Welcome, hackers. You must verify your identity to continue.</p>
+  <% if alert == :wrong %>
+  <p class="hacker red">Wrong username or password. Access is denied.</p>
+  <% elsif alert == :logout %>
+  <p class="hacker red">Successfully logged out and deauthenticated.</p>
+  <% end %>
+  <%= form_tag '/login', :autocomplete => "off" do %>
+  <table>
+    <tr><td class="hacker loginLabel" shows="group1"><%= label_tag :internal_name, 'Hacker username:' %> </td><td><%= text_field_tag(:internal_name, '', :size => '35', :class => 'group1') %></td></tr>
+    <tr><td class="hacker" shows="group2"><%= label_tag :clear_pass, 'Password:' %> </td><td class="group2"><%= password_field_tag(:clear_pass, '', :size => '35', :class => 'group2') %></td></tr>
+    <tr><td></td><td><%= submit_tag 'Login', :class => 'group2' %></td></tr>
+  </table>
+  <% end %>
+  <div class="garbageContainer dim">
+    <div class="garbage"></div>
+    <div class="garbage"></div>
+    <div class="garbage"></div>
+    <div class="garbage"></div>
+  </div>
+</div>
