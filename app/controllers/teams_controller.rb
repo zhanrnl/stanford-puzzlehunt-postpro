@@ -18,7 +18,6 @@ class TeamsController < ApplicationController
   def show
     (kick and return) if not is_god?
     @team = Team.find(params[:id])
-    puts @team.puzzles.length
 
     respond_to do |format|
       format.html # show.html.erb
@@ -43,6 +42,7 @@ class TeamsController < ApplicationController
   def edit
     (kick and return) if not is_god?
     @team = Team.find(params[:id])
+    @all_puzzles = Puzzle.all
     @mode = :edit
   end
 
@@ -78,6 +78,31 @@ class TeamsController < ApplicationController
       params[:team][:pass_hash] = hash
     end
     @team = Team.find(params[:id])
+
+    pref = 'has_solved_'
+    puzzles_to_set_solved = params.keys.select do |k| 
+      k.start_with? pref
+    end.map do |k|
+      k.sub(pref, '').to_i
+    end
+    actual_solved_ids = @team.puzzles.map{|p| p.id}
+    puts actual_solved_ids.inspect
+    puts puzzles_to_set_solved.inspect
+
+    puzzles_to_set_solved.each do |pid|
+      if not actual_solved_ids.include? pid
+        s = Solve.new(:puzzle_id => pid, :team_id => @team.id, :time_solved => Time.now)
+        s.save
+      end
+    end
+    actual_solved_ids.each do |pid|
+      if not puzzles_to_set_solved.include? pid
+        Solve.where(:puzzle_id => pid, :team_id => @team.id).destroy_all
+      end
+    end
+
+    # puts puzzles_to_set_solved
+    # puts actual_solved_ids
 
     respond_to do |format|
       if @team.update_attributes(params[:team])

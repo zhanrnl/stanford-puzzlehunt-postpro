@@ -23,6 +23,8 @@
     <li><%= check_box_tag ("neighbor_" + p.id.to_s), 1, (@puzzle.linked_puzzles.include? p) %>&ensp;<%= p.puzzle_name %></li>
     <% end %>
   </ul>
+  <p>Is a meta puzzle: <%= f.check_box :is_meta %></p>
+  <p>Number of unlocked neighbors needed to unlock: <%= f.text_field :neighbors_needed %></p>
 
   <div class="actions">
     <%= f.submit %>

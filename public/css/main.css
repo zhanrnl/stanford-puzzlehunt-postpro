@@ -8,7 +8,7 @@ body {
 }
 
 .puzzleFormBodyCont {
-  border: 1px solid black;
+  border: 1px solid white;
   padding: 10px;
 }
 
@@ -45,7 +45,7 @@ h1, h2, p {
 }
 
 .allContentContainer {
-  width: 1000px;
+  width: 1100px;
   margin: 0 auto;
 }
 

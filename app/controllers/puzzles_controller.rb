@@ -29,9 +29,23 @@ class PuzzlesController < ApplicationController
   def unlocked_puzzles
     team = get_team
     solved_puzzles = team.puzzles.to_a
-    neighbors = solved_puzzles.map do |p|
-      p.linked_puzzles.to_a
-    end.flatten
+    all_puzzles = Puzzle.all
+    neighbors = []
+    all_puzzles.each do |p|
+      nn = p.neighbors_needed
+      num_solved = 0
+      p.linked_puzzles.each do |pn|
+        if solved_puzzles.include? pn
+          num_solved += 1
+        end
+      end
+      if num_solved >= nn
+        neighbors << p
+      end
+    end
+    # neighbors = solved_puzzles.map do |p|
+    #   p.linked_puzzles.to_a
+    # end.flatten
     starts_unlocked = Puzzle.where('starts_unlocked = ?', true).to_a
     (solved_puzzles + neighbors + starts_unlocked).uniq
   end

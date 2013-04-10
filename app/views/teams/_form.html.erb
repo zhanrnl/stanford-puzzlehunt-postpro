@@ -15,6 +15,14 @@
   <p>Internal team name: <%= f.text_field :internal_name, :class => :internalNameField, :readonly => :readonly %></p>
   <p>Password: <%= f.text_field :pass_hash %> <%= button_tag "Generate awesome password", :type => :button, :id => :genpassword %></p>
   <p>Password needs to be hashed: <%= check_box_tag :do_hash, 1, @mode==:new %></p>
+  <% if @mode == :edit %>
+  <h2>Change which puzzles this team has solved</h2>
+  <ul>
+    <% @all_puzzles.each do |p| %>
+      <li><%= check_box_tag ("has_solved_" + p.id.to_s), 1, (@team.puzzles.include? p) %>&ensp;<%= p.puzzle_name %></li>
+    <% end %>
+  </ul>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
