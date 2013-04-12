@@ -98,6 +98,7 @@ class TeamsController < ApplicationController
     actual_solved_ids.each do |pid|
       if not puzzles_to_set_solved.include? pid
         Solve.where(:puzzle_id => pid, :team_id => @team.id).destroy_all
+        Callin.where(:puzzle_id => pid, :team_id => @team.id).destroy_all
       end
     end
 

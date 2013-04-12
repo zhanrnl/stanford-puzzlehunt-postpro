@@ -5,9 +5,9 @@ class PuzzlesController < ApplicationController
   # GET /puzzles.json
   def index
     kick and return if not is_team?
-
+    
     @puzzles = Puzzle.all
-
+    
     # render puzzle hunt index page teams will see
     if not is_god? 
       @unlocked_puzzles = unlocked_puzzles
@@ -246,5 +246,22 @@ class PuzzlesController < ApplicationController
   def resource_delete
     Resource.destroy_all(:original => params[:original])
     redirect_to upload_url, :alert => {:type => :delete_success}
+  end
+
+  def ask_question
+    @question = Question.new
+  end
+
+  def submit_question
+    q = Question.new(params[:question])
+    team = get_team
+    q.team_id = team.id
+    q.time_called = Time.now
+    q.answered = false
+    if q.save
+      redirect_to ask_question_url, :alert => {:type => :success}
+    else
+      redirect_to ask_question_url, :alert => {:type => :problem}
+    end
   end
 end

@@ -2,11 +2,11 @@
 <% if @solved.nil? %>
   <h2>Call in an answer for <%= @puzzle.puzzle_name %></h2>
   <% if alert == :success %>
-    <p>Successfully submitted your answer. We will call you back very soon!</p>
+    <p class="red">Successfully submitted your answer. We will call you back very soon!</p>
   <% elsif alert == :missing_info %>
-    <p>Must enter both an answer and a valid phone number so we can call you.</p>
+    <p class="red">Must enter both an answer and a valid phone number so we can call you.</p>
   <% elsif alert == :too_many %>
-    <p>Cannot submit a new call-in yet! You must wait for us to respond to your first call-in.</p>
+    <p class="red">Cannot submit a new call-in yet! You must wait for us to respond to your first call-in.</p>
   <% end %>
   <%= form_for(@callin, :url => post_callin_puzzle_url_name(@puzzle), :html => {:autocomplete => "off"}) do |f| %>
     <div>Answer: <%= f.text_field :answer %></div>

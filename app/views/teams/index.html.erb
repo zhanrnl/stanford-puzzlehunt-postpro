@@ -18,7 +18,7 @@
     <td><%= team.internal_name %></td>
     <td><%= link_to 'Show', team %></td>
     <td><%= link_to 'Edit', edit_team_path(team) %></td>
-    <% if team.team_name != 'god' %>
+    <% if team.team_name.downcase != 'god' %>
     <td><%= link_to 'Destroy', team, :method => :delete, :confirm => "Really delete?" %></td>
     <% end %>
   </tr>

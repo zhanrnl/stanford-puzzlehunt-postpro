@@ -1,5 +1,6 @@
 <h1>Stanford Puzzle Hunt</h1>
-<p>Logged in as team:&emsp;<%= session[:team_name] %>&emsp;<a href='/logout'>Logout</a>
+<p>Logged in as team:&emsp;<%= session[:team_name] %>&emsp;<a href='/logout'>Logout</a></p>
+<p><%= link_to "Ask a Question to HQ", ask_question_url %></p>
 <h2>Puzzles</h2>
 <table>
 <% @puzzles.each do |p| %>

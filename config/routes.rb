@@ -3,10 +3,18 @@ PostPro::Application.routes.draw do
   get 'queue/index'
   match 'queue' => 'queue#index'
   match 'queue/numcallins' => 'queue#get_num_callins'
+  match 'queue/numquestions' => 'queue#get_num_questions'
   match 'queue/dequeue' => 'queue#dequeue_callin'
   match 'queue/correct' => 'queue#correct'
   match 'queue/incorrect' => 'queue#incorrect'
   match 'queue/requeue' => 'queue#requeue'
+
+  match 'queue/delegate' => 'queue#delegate'
+
+  match 'qqueue' => 'queue#qindex'
+  match 'qqueue/dequeue' => 'queue#dequeue_question'
+  match 'qqueue/answered' => 'queue#answered_question'
+  match 'qqueue/attention' => 'queue#attention_question'
 
   resources :teams do
     collection do
@@ -25,6 +33,9 @@ PostPro::Application.routes.draw do
   match 'upload' => 'puzzles#upload', :via => :get
   match 'upload' => 'puzzles#upload_post', :via => :post
   match 'upload/delete' => 'puzzles#resource_delete'
+
+  match 'ask_question' => 'puzzles#ask_question', :via => :get
+  match 'ask_question' => 'puzzles#submit_question', :via => :post
 
   match 'login' => 'login#login', :via => :post
   match 'logout' => 'login#logout'

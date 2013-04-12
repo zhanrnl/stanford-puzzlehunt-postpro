@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  team_id: 1
+  question: MyText
+  phone_num: MyString
+  time_called: 2013-04-10 11:48:03
+  answered: false
+
+two:
+  team_id: 1
+  question: MyText
+  phone_num: MyString
+  time_called: 2013-04-10 11:48:03
+  answered: false
