@@ -1,37 +1,49 @@
 <script type="text/javascript">$(function(){doFadeIn();});</script>
 
-
 <div class="garbageContainer dim">
   <div class="garbage"></div>
   <div class="garbage"></div>
 </div>
 <div>
-  <div style="float:left"><h1>&lt;&lt;&lt;&lt;&lt;<span class="hacker">C.H.A.O.S. Initiative</span>&gt;&gt;&gt;&gt;&gt;</h1><h2><span class="hacker">Network Root</span></h2></div>
-  <div style="float:right; text-align:right">
+  <div class="chaosInitHeader"><h1>&lt;&lt;&lt;&lt;&lt;<span class="hacker">C.H.A.O.S. Initiative</span>&gt;&gt;&gt;&gt;&gt;</h1><h2><span class="hacker">Welcome to the C.H.A.O.S. Initiative Network Root</span></h2></div>
+  <div class="controlsBox">
     <div class="hacker">Logged in as <%= @team_name %></div>
+    <div class="hacker">You have X CPU priority points</div>
     <div><%= link_to "Ask a Question to HQ", ask_question_url, :class=>'hacker' %></div>
     <div><a href='/logout'  class="hacker">Logout</a></div>
   </div>
 </div>
 <div style="clear:both"></div>
-<p class="hacker">Welcome, hackers of team &lt;&lt;&lt;<%= @team_name %>&gt;&gt;&gt;. The Chaos Initiative has infiltrated the Pentagon internal data intranet servers, giving us direct access to the security firewall network protecting their most sensitive data.</p>
-<p class="hacker">Each module below represents a firewall server, a virtual security blockade that must be destroyed to unlock the next layer. We have provided all the necessary tools. Now it is your job to hack the system and retrieve the data that will free us all.</p>
-<table>
-<% @puzzles.each do |p| %>
-<tr>
-  <td><%= p.puzzle_name %></td>
-  <td>
-    <% if @unlocked_puzzles.include? p %>
-    <%= link_to "link to puzzle", puzzle_url_name(p) %>
-    <% else %>
-    <b>locked</b>
+<div class="garbageContainer dim">
+  <div class="garbage"></div>
+  <div class="garbage"></div>
+</div>
+<p class="hacker">Welcome, hackers of team &lt;&lt;&lt;<%= @team_name %>&gt;&gt;&gt;. The Chaos Initiative has infiltrated the Government's internal data intranet servers, giving us direct access to the security firewall network protecting their most sensitive data.</p>
+<p class="hacker">Each module below represents a firewall server, a virtual security blockade that must be destroyed to unlock the next layer. We have provided all the necessary tools. Now it is your job to hack the system and retrieve the WRMX data for great justice.</p>
+<script type="text/javascript">
+var links = <%= @puzzle_links.to_json.html_safe %>;
+</script>
+<div id="puzzleGraphContainer">
+  <% @puzzle_boxes.each do |pb| %>
+  <% if pb[:unlocked] %>
+  <a href="/puzzles/<%= pb[:url] %>">
+    <div id="<%= pb[:id] %>" class="puzzleGraphBox<%= pb[:ismeta] ? ' metaBox' : '' %>" style="left: <%= pb[:x] %>px; top: <%= pb[:y] %>px">
+        <div class="puzzleName"><%= pb[:name] %></div>
+        <% if pb[:solved] %>
+        <div class="solved">SOLVED</div>
+        <% end %>
+    </div>
+  </a>
+  <% else %>
+  <div id="<%= pb[:id] %>" class="puzzleGraphBox grayBox<%= pb[:ismeta] ? ' metaBox' : '' %>" style="left: <%= pb[:x] %>px; top: <%= pb[:y] %>px">
+    <% if pb[:nn] > 1 %>
+    <div class="smallText">(requires <%= pb[:nn] %> solved to unlock)</div>
     <% end %>
-  </td>
-  <td>
-    <% if @solved_puzzles.include? p %>
-    <b>solved</b>
-    <% end %>
-  </td>
-</tr>
-<% end %>
-</table>
+    <div class="questionMark">?</div>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+
+<%= render "shared/js_link", :src => "raphael-min" %>
+<%= render "shared/js_link", :src => "graphdraw" %>

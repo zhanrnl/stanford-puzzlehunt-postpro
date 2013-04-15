@@ -21,8 +21,8 @@
   <tr>
   <% @teams.each do |team| %>
   <tr class="scoreboard">
-    <td><%= team.team_name %></td>
-    <td><%= team.internal_name %></td>
+    <td><%= link_to team.team_name, team_url(team.id) %></td>
+    <td><%= link_to team.internal_name, team_url(team.id) %></td>
     <td><%= team.num_total_puzzles_solved %></td>
     <td><%= team.num_nonmeta_puzzles_solved %></td>
     <td><%= team.num_meta_puzzles_solved %></td>

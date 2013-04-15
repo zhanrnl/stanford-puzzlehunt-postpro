@@ -13,6 +13,33 @@ class PuzzlesController < ApplicationController
     if not is_god? 
       @unlocked_puzzles = unlocked_puzzles
       @solved_puzzles = (get_team).puzzles
+
+      @puzzle_boxes = []
+      @puzzles.each do |p|
+        obj = {:id => "p#{p.id}", :nn => p.neighbors_needed, :unlocked => false, :x => p.xcoord, :y => p.ycoord, :solved => false}
+        if @unlocked_puzzles.include? p
+          obj[:name] = p.puzzle_name
+          obj[:url] = p.internal_name
+          obj[:unlocked] = true
+        end
+        if @solved_puzzles.include? p
+          obj[:solved] = true
+        end
+        obj[:ismeta] = p.is_meta
+        @puzzle_boxes << obj.clone
+      end
+
+      @puzzle_links = []
+      Puzzle.all.each do |p|
+        p.linked_puzzles.each do |lp|
+          @puzzle_links << {
+            :ids => [p.id, lp.id].sort, 
+            :unlocked => @solved_puzzles.include?(p) || @solved_puzzles.include?(lp)
+          }
+        end
+      end
+      @puzzle_links.uniq!
+
       render 'huntindex' and return
     end
 
@@ -44,9 +71,6 @@ class PuzzlesController < ApplicationController
         neighbors << p
       end
     end
-    # neighbors = solved_puzzles.map do |p|
-    #   p.linked_puzzles.to_a
-    # end.flatten
     starts_unlocked = Puzzle.where('starts_unlocked = ?', true).to_a
     (solved_puzzles + neighbors + starts_unlocked).uniq
   end

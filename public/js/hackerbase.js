@@ -33,14 +33,14 @@ var doFadeIn = function() {
       var interval = setInterval(function() {
         if (letters != 0) {
           var str = origText.slice(0, letters);
-          for (var j = Math.max(0, letters - 30); j < letters; j++) {
+          for (var j = Math.max(0, letters - 100); j < letters; j++) {
             if (!str[j].match(/[ \.,;:]/) && Math.random() < 0.4) {
               str = setCharAt(str, j, randomHexChar());
             }
           }
           $elem.text(str);
         }
-        if (Math.random() < Math.pow(0.02 * origText.length + 0.1, 2)) {
+        if (Math.random() < Math.pow(0.01 * origText.length + 0.15, 2)) {
           letters += 1;
         }
         if (letters >= origText.length - 1) {

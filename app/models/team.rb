@@ -22,7 +22,7 @@ class Team < ActiveRecord::Base
     if solves.length == 0
       return 'none solved yet'
     end
-    return [solves.first.puzzle.puzzle_name, solves.first.time_solved]
+    return [solves.last.puzzle.puzzle_name, solves.last.time_solved]
   end
 end
 
