@@ -7,3 +7,27 @@
 <div><a href="<%= upload_url %>">Upload puzzle resource</a></div>
 <p></p>
 <div><a href="<%= logout_url %>">Logout god</a></div>
+<hr>
+<h2>Team scoreboard</h2>
+<table>
+  <tr>
+    <th>Team name</th>
+    <th>Internal name</th>
+    <th>Total number of puzzles solved</th>
+    <th>Number of non-meta puzzles solved</th>
+    <th>Number of meta puzzles solved</th>
+    <th>Most recent puzzle solved</th>
+    <th>Time of most recent solve</th>
+  <tr>
+  <% @teams.each do |team| %>
+  <tr class="scoreboard">
+    <td><%= team.team_name %></td>
+    <td><%= team.internal_name %></td>
+    <td><%= team.num_total_puzzles_solved %></td>
+    <td><%= team.num_nonmeta_puzzles_solved %></td>
+    <td><%= team.num_meta_puzzles_solved %></td>
+    <td><%= n, t = team.most_recent_puzzle_solved; n %></td>
+    <td><%= t %></td>
+  </tr>
+  <% end %>
+</table>

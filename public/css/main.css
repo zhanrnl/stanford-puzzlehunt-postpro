@@ -63,7 +63,7 @@ h1, h2, p {
 }
 
 .loginLabel {
-  width: 190px;
+  width: 220px;
 }
 
 a {
@@ -75,4 +75,8 @@ a {
 a:hover {
   color: #cff; 
   text-shadow: 0px 0px 10px rgba(240,240,255,1),  0px 0px 10px rgba(240,240,255,1),  0px 0px 30px rgba(0,150,255,1),  0px 0px 30px rgba(0,150,255,1);
+}
+
+.scoreboard td {
+  border-top: 1px solid;
 }

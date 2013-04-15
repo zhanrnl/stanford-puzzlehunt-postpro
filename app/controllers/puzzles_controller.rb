@@ -7,6 +7,7 @@ class PuzzlesController < ApplicationController
     kick and return if not is_team?
     
     @puzzles = Puzzle.all
+    @team_name = get_team.team_name
     
     # render puzzle hunt index page teams will see
     if not is_god? 
@@ -170,6 +171,8 @@ class PuzzlesController < ApplicationController
   # /puzzles/god
   def god
     kick and return if not is_god?
+
+    @teams = Team.all
   end
 
   def callin

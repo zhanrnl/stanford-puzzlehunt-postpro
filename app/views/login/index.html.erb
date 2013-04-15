@@ -14,7 +14,7 @@
     <div class="garbage"></div>
     <div class="garbage"></div>
   </div>
-  <h2 class="hacker">Stanford Puzzle Hunt</h2>
+  <h2 class="hacker">C.H.A.O.S. Initiative</h2>
   <h1>&lt;&lt;&lt;&lt;&lt;<span class="hacker">Hacker Login Interface</span>&gt;&gt;&gt;&gt;&gt;</h1>
   <p class="hacker">Welcome, hackers. You must verify your identity to continue.</p>
   <% if alert == :wrong %>
@@ -24,7 +24,7 @@
   <% end %>
   <%= form_tag '/login', :autocomplete => "off" do %>
   <table>
-    <tr><td class="hacker loginLabel" shows="group1"><%= label_tag :internal_name, 'Hacker username:' %> </td><td><%= text_field_tag(:internal_name, '', :size => '35', :class => 'group1') %></td></tr>
+    <tr><td class="hacker loginLabel" shows="group1"><%= label_tag :internal_name, 'Hacker team username:' %> </td><td><%= text_field_tag(:internal_name, '', :size => '35', :class => 'group1') %></td></tr>
     <tr><td class="hacker" shows="group2"><%= label_tag :clear_pass, 'Password:' %> </td><td class="group2"><%= password_field_tag(:clear_pass, '', :size => '35', :class => 'group2') %></td></tr>
     <tr><td></td><td><%= submit_tag 'Login', :class => 'group2' %></td></tr>
   </table>

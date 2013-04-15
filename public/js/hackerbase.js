@@ -40,7 +40,7 @@ var doFadeIn = function() {
           }
           $elem.text(str);
         }
-        if (Math.random() < 0.02 * origText.length + 0.08) {
+        if (Math.random() < Math.pow(0.02 * origText.length + 0.1, 2)) {
           letters += 1;
         }
         if (letters >= origText.length - 1) {
@@ -51,7 +51,7 @@ var doFadeIn = function() {
             $('.' + showGroup).css('visibility', 'visible');
           }
         }
-      }, 25);
+      }, 8);
     }, Math.random() * 200);
   });
   $('.garbage').each(function(i, elem){
