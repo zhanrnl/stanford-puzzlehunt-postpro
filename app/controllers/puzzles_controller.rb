@@ -32,6 +32,9 @@ class PuzzlesController < ApplicationController
       @puzzle_links = []
       Puzzle.all.each do |p|
         p.linked_puzzles.each do |lp|
+          if p.is_meta or lp.is_meta
+            next
+          end
           @puzzle_links << {
             :ids => [p.id, lp.id].sort, 
             :unlocked => @solved_puzzles.include?(p) || @solved_puzzles.include?(lp)
