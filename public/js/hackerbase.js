@@ -23,7 +23,7 @@ var zeroToN = function(n) {
 }
 
 var doFadeIn = function() {
-  $('input, button, submit').css('visibility', 'hidden');
+  $('input, button, submit, textarea').css('visibility', 'hidden');
   $('.hacker').each(function(i, elem) {
     var $elem = $(elem);
     var origText = $elem.text();
@@ -40,9 +40,7 @@ var doFadeIn = function() {
           }
           $elem.text(str);
         }
-        if (Math.random() < Math.pow(0.01 * origText.length + 0.15, 2)) {
-          letters += 1;
-        }
+        letters += Math.floor(0.05 * Math.random() * origText.length) + 1;
         if (letters >= origText.length - 1) {
           $elem.text(origText);
           clearInterval(interval);
@@ -51,8 +49,8 @@ var doFadeIn = function() {
             $('.' + showGroup).css('visibility', 'visible');
           }
         }
-      }, 8);
-    }, Math.random() * 200);
+      }, 50);
+    }, Math.random() * 400);
   });
   $('.garbage').each(function(i, elem){
     var $elem = $(elem);
@@ -79,6 +77,6 @@ var doFadeIn = function() {
           return '&nbsp;&nbsp;';
         }
       }).join('&nbsp;'));
-    }, 80);
+    }, 100);
   });
 };

@@ -1,4 +1,11 @@
-<div><%= link_to "Back to puzzles index", puzzles_path %></div>
-<div><%= link_to "Call in an answer or check previously called-in answers", callin_puzzle_path %></div>
-<h1><%= @puzzle.puzzle_name %></h1>
-<%= @puzzle.body.html_safe %>
+<%= render "shared/css_link", :src => "hackerstyle" %> 
+<% title "C.H.A.O.S. Firewall: #{@puzzle.puzzle_name}" %>
+<script type="text/javascript">$(function(){doFadeIn();});</script>
+<p>
+  <%= link_to "Back to Network Root", puzzles_path, :class => :hacker %> | <%= link_to "Call in an answer or check previously called-in answers", callin_puzzle_path, :class => :hacker %>
+</p>
+<div class="hacker">C.H.A.O.S. Initiative has already hacked in and scraped this webpage from the Government network firewall security access sector. It is meant to only be viewable by Government security personnel. It contains important access codes, in the form of English words or phrases, that you must recover from the data here. &lt;&lt;&lt;Good luck, hackers.&gt;&gt;&gt;</div>
+<% content_for :govt do %>
+  <h1><%= @puzzle.puzzle_name %></h1>
+  <%= @puzzle.body.html_safe %>
+<% end %>

@@ -13,5 +13,22 @@
 <div class="allContentContainer">
 <%= yield %>
 </div>
+<% if not (yield :govt).empty? %>
+<div class="govt">
+  <div class="allContentContainer govtContainer">
+  <div class="govtHeader">
+    <div class="govtHeaderText">Department of Weapons Research</div>
+  </div>
+  <div class="govtWarningText">
+    <h2>FIREWALL SECURITY ACCESS DATA</h2>
+    WARNING: THIS PAGE CONTAINS SENSITIVE FIREWALL DISABLING CODE DATA. DO NOT LET THIS INFORMATION LEAK TO THE OUTSIDE. THE DATA IS ENCODED BELOW.
+  </div>
+  <hr>
+  <div class="puzzleBodyContainer">
+    <%= yield :govt %>
+  </div>
+  </div>
+</div>
+<% end %>
 </body>
 </html>

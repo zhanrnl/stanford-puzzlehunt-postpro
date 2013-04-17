@@ -41,7 +41,7 @@ $(function() {
     $status.text('CONNECTION SUCCESSFUL, CHANNEL ESTABLISHED');
     setTimeout(function() {
       fadeIn();
-    }, Math.random() * 1000 + 1000);
+    }, Math.random() * 500);
   };
 
   var doLoading2 = function() {
@@ -49,30 +49,30 @@ $(function() {
     $status.text(message2);
     var loading2 = setInterval(function() {
       $bar.html(makeLoadingStr(loadingBarSize, loadingProgress));
-      if (Math.random() < 0.2) {
-        loadingProgress += 1;
+      if (Math.random() < 0.8) {
+        loadingProgress += Math.random() * 5;
         if (loadingProgress > loadingBarSize) {
           // next loading
           clearInterval(loading2);
           doneLoading();
         }
       }
-    }, 10); 
+    }, 50); 
   };
 
   var doLoading1 = function() {
     $status.text(message1);
     var loading1 = setInterval(function() {
       $bar.html(makeLoadingStr(loadingBarSize, loadingProgress));
-      if (Math.random() < 0.2) {
-        loadingProgress += 1;
+      if (Math.random() < 0.8) {
+        loadingProgress += Math.random() * 5;
         if (loadingProgress > loadingBarSize) {
           // next loading
           clearInterval(loading1);
           doLoading2();
         }
       }
-    }, 10); 
+    }, 50); 
   };
 
   if ($('.loginLoading').length == 0) {

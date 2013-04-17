@@ -1,17 +1,28 @@
-<div><%= link_to "Back to puzzles index", puzzles_path %></div>
-<h1>Ask a question to HQ</h1>
-<p>We will call you back at the phone number you give to answer your question.</p>
+<%= render "shared/css_link", :src => "hackerstyle" %>
+<% title "Ask a question to HQ" %>
+<script type="text/javascript">$(function(){doFadeIn();});</script>
+<div class="garbageContainer dim">
+  <div class="garbage"></div>
+  <div class="garbage"></div>
+</div>
+<div><%= link_to "Back to puzzles index", puzzles_path, :class => :hacker %></div>
+<h1 class="hacker">Ask a question to HQ</h1>
+<p class="hacker" shows="ta">We will call you back at the phone number you give to answer your question.</p>
 
 <% if not alert.nil? %>
   <% if alert[:type] == :success %>
-  <p class="red">Question successfully submitted. HQ will call you soon.</p>
+  <p class="red hacker">Question successfully submitted. HQ will call you soon.</p>
   <% elsif alert[:type] == :problem %>
-  <p class="red">Must enter both a question and a valid phone number so we can call you.</p>
+  <p class="red hacker">Must enter both a question and a valid phone number so we can call you.</p>
   <% end %>
 <% end %>
 <%= form_for(@question, :url => ask_question_url) do |f| %>
-  <div>Phone number, format must be XXX-XXX-XXXX: <%= f.text_field :phone_num %></div>
-  <p>Type your question here. If your question concerns a specific puzzle, you must indicate the name of that puzzle here.</p><p>OTHER HELP TEXT GOES HERE GIVE EXAMPLE QUERIES</p>
-  <p><%= f.text_area :question %></p>
-  <%= f.submit "Ask the question" %>
+  <div><span class="hacker" shows="group1">Phone number, format must be XXX-XXX-XXXX:</span> <%= f.text_field :phone_num, :class => :group1 %></div>
+  <p class="hacker" shows="subbtn">Type your question here. If your question concerns a specific puzzle, you must indicate the name of that puzzle here.</p><p class="hacker">OTHER HELP TEXT GOES HERE GIVE EXAMPLE QUERIES</p>
+  <p><%= f.text_area :question, :rows => 10, :cols => 80, :class => :ta %></p>
+  <%= f.submit "Ask the question", :class => "subbtn" %>
 <% end %>
+<div class="garbageContainer dim">
+  <div class="garbage"></div>
+  <div class="garbage"></div>
+</div>
