@@ -54,6 +54,7 @@ var GenVM = function() {
         self.showProcessing(false);
       });
     });
+    self.questionNotes(' ');
   };
   self.respondIncorrect = function() {
     self.showProcessing(true);
@@ -65,6 +66,7 @@ var GenVM = function() {
         self.showProcessing(false);
       });
     });
+    self.questionNotes(' ');
   };
   self.respondRequeue = function() {
     self.showProcessing(true);
@@ -77,6 +79,7 @@ var GenVM = function() {
         self.showProcessing(false);
       });
     });
+    self.questionNotes(' ');
   };
   self.respondDelegate = function() {
     self.showProcessing(true);
@@ -94,6 +97,7 @@ var GenVM = function() {
         self.showProcessing(false);
       });
     });
+    self.questionNotes(' ');
   };
   ko.computed(function() {
     if (self.showCallin()) {

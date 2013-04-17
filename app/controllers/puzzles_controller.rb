@@ -215,6 +215,12 @@ class PuzzlesController < ApplicationController
     @previous_callins = Callin.where('puzzle_id = ? AND team_id = ?', @puzzle.id, team.id).to_a
   end
 
+  def process_answer answer
+    answer.gsub(/[^A-Za-z]/, '')
+    answer = answer.upcase
+    return answer
+  end
+
   def post_callin
     @puzzle = Puzzle.where('internal_name = ?', params[:id]).first
     if @puzzle.nil? or not is_unlocked?(@puzzle)
@@ -233,6 +239,9 @@ class PuzzlesController < ApplicationController
     params[:callin][:team_id] = team_id
     params[:callin][:time_called] = Time.now
     params[:callin][:answered] = false
+
+    params[:callin][:answer] = process_answer(params[:callin][:answer])
+
     @callin = Callin.new(params[:callin])
 
     missing_info = (params[:callin][:answer].empty? or params[:callin][:phone_num].empty?)
