@@ -122,6 +122,16 @@ a:hover {
   padding: 10px;
 }
 
+.puzzleBodyContainer a {
+  color: blue;
+  text-shadow: none;
+}
+
+.puzzleBodyContainer a:hover {
+  color: blue;
+  text-shadow: none;
+}
+
 .govtHeader {
   font-weight: bold;
   background-image: url('/img/govtheader.png');
