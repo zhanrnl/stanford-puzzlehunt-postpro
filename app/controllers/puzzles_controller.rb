@@ -216,8 +216,7 @@ class PuzzlesController < ApplicationController
   end
 
   def process_answer answer
-    answer.gsub(/[^A-Za-z]/, '')
-    answer = answer.upcase
+    answer = answer.gsub(/[^A-Za-z]/, '').upcase
     return answer
   end
 
