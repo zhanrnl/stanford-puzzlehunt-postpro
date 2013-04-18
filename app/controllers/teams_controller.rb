@@ -78,6 +78,8 @@ class TeamsController < ApplicationController
       params[:team][:pass_hash] = hash
     end
     @team = Team.find(params[:id])
+    points_adjust = params[:points_adjust].to_i
+    @team.points = @team.points + points_adjust
 
     pref = 'has_solved_'
     puzzles_to_set_solved = params.keys.select do |k| 
@@ -86,8 +88,8 @@ class TeamsController < ApplicationController
       k.sub(pref, '').to_i
     end
     actual_solved_ids = @team.puzzles.map{|p| p.id}
-    puts actual_solved_ids.inspect
-    puts puzzles_to_set_solved.inspect
+    # puts actual_solved_ids.inspect
+    # puts puzzles_to_set_solved.inspect
 
     puzzles_to_set_solved.each do |pid|
       if not actual_solved_ids.include? pid
@@ -101,9 +103,6 @@ class TeamsController < ApplicationController
         Callin.where(:puzzle_id => pid, :team_id => @team.id).destroy_all
       end
     end
-
-    # puts puzzles_to_set_solved
-    # puts actual_solved_ids
 
     respond_to do |format|
       if @team.update_attributes(params[:team])

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418164801) do
+ActiveRecord::Schema.define(:version => 20130418173347) do
 
   create_table "announcements", :force => true do |t|
     t.string   "title"
@@ -86,8 +86,9 @@ ActiveRecord::Schema.define(:version => 20130418164801) do
     t.string   "internal_name"
     t.string   "pass_hash"
     t.string   "team_name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "points",        :default => 0
   end
 
 end

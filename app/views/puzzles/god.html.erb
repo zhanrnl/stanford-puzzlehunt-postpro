@@ -19,6 +19,7 @@
     <th>Number of meta puzzles solved</th>
     <th>Most recent puzzle solved</th>
     <th>Time of most recent solve</th>
+    <th>Points</th>
   <tr>
   <% @teams.each do |team| %>
   <tr class="scoreboard">
@@ -29,6 +30,7 @@
     <td><%= team.num_meta_puzzles_solved %></td>
     <td><%= n, t = team.most_recent_puzzle_solved; n %></td>
     <td><%= t %></td>
+    <td><%= team.points %></td>
   </tr>
   <% end %>
 </table>

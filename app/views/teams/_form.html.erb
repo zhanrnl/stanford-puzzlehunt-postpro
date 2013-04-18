@@ -23,6 +23,8 @@
     <% end %>
   </ul>
   <% end %>
+  <p>Type a positive or negative integer into the box here to adjust this team's points. "50" will increase their CPU points by 50, "-50" will decrease their CPU points by 50.</p>
+  <p><%= text_field_tag 'points_adjust', '0' %>
 
   <div class="actions">
     <%= f.submit %>

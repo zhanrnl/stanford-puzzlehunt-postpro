@@ -10,7 +10,7 @@
   <div class="chaosInitHeader"><h1>&lt;&lt;&lt;&lt;&lt;<span class="hacker">C.H.A.O.S. Initiative</span>&gt;&gt;&gt;&gt;&gt;</h1><h2><span class="hacker">Welcome to the C.H.A.O.S. Initiative Network Root</span></h2></div>
   <div class="controlsBox">
     <div class="hacker">Logged in as <%= @team_name %></div>
-    <div class="hacker">You have X CPU priority points</div>
+    <div class="hacker">You have <%= @points %> CPU priority points</div>
     <div><%= link_to "Ask a Question to HQ", ask_question_url, :class=>'hacker' %></div>
     <div><a href='/logout'  class="hacker">Logout</a></div>
   </div>
@@ -29,7 +29,7 @@ var links = <%= @puzzle_links.to_json.html_safe %>;
   <% @puzzle_boxes.each do |pb| %>
   <% if pb[:unlocked] %>
   <a href="/puzzles/<%= pb[:url] %>">
-    <div id="<%= pb[:id] %>" class="puzzleGraphBox<%= (pb[:ismeta] ? ' metaBox' : '') + ' ' + pb[:color] %>" style="left: <%= pb[:x] %>px; top: <%= pb[:y] %>px">
+    <div id="<%= pb[:id] %>" class="puzzleGraphBox<%= (pb[:ismeta] ? ' metaBox' : '') + ' ' + pb[:color] %>" style="visibility: hidden; left: <%= pb[:x] %>px; top: <%= pb[:y] %>px">
         <div class="puzzleName"><%= pb[:name] %></div>
         <% if pb[:solved] %>
         <div class="solved">SOLVED</div>
@@ -37,7 +37,7 @@ var links = <%= @puzzle_links.to_json.html_safe %>;
     </div>
   </a>
   <% else %>
-  <div id="<%= pb[:id] %>" class="puzzleGraphBox grayBox<%= pb[:ismeta] ? ' metaBox' : '' %>" style="left: <%= pb[:x] %>px; top: <%= pb[:y] %>px">
+  <div id="<%= pb[:id] %>" class="puzzleGraphBox grayBox<%= pb[:ismeta] ? ' metaBox' : '' %>" style="visibility: hidden; left: <%= pb[:x] %>px; top: <%= pb[:y] %>px">
     <% if pb[:nn] > 1 %>
     <div class="smallText">(requires <%= pb[:nn] %> solved to unlock)</div>
     <% end %>

@@ -7,12 +7,14 @@ class PuzzlesController < ApplicationController
     kick and return if not is_team?
     
     @puzzles = Puzzle.all
-    @team_name = get_team.team_name
+    t = get_team
+    @team_name = t.team_name
     
     # render puzzle hunt index page teams will see
     if not is_god? 
       @unlocked_puzzles = unlocked_puzzles
-      @solved_puzzles = (get_team).puzzles
+      @solved_puzzles = t.puzzles
+      @points = t.points
 
       @puzzle_boxes = []
       @puzzles.each do |p|

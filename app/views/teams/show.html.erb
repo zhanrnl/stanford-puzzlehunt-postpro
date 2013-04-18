@@ -12,6 +12,7 @@
 <% else %>
 <p>This team has not solved any puzzles.</p>
 <% end %>
+<p>This team has <%= @team.points %> points.</p>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
