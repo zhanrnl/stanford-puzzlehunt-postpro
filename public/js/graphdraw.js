@@ -5,7 +5,7 @@ $(function() {
     var height = $elem.height();
 
     var centerX = offset.left + width / 2 + 6;
-    var centerY = offset.top + height / 2 + 6;
+    var centerY = offset.top + 18;
     return [centerX, centerY];
   };
   var coordsToStr = function(coords) {
