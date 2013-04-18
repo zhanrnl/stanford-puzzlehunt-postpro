@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minutes do
+every '0,15,30,45 11-20 20 4 *' do
   rake "addpoints"
 end
