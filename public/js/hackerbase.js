@@ -40,13 +40,13 @@ var doFadeIn = function() {
           }
           $elem.text(str);
         }
-        letters += Math.floor(0.05 * Math.random() * origText.length) + 1;
+        letters += Math.floor(0.05 * Math.random() * origText.length) + 2;
         if (letters >= origText.length - 1) {
           $elem.text(origText);
           clearInterval(interval);
           if ($elem.attr('shows') != undefined) {
             var showGroup = $elem.attr('shows');
-            $('.' + showGroup).css('visibility', 'visible');
+            $('.' + showGroup).css('visibility', 'visible').show();
           }
         }
       }, 50);
