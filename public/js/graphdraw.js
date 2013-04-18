@@ -25,7 +25,8 @@ $(function() {
       maxY = link.center2[1];
     }
     link.extOffset = Math.random();
-  })
+  });
+
 
   var elem = $('#puzzleGraphContainer')[0];
   var paper = Raphael(elem, 1100, maxY);
@@ -33,11 +34,15 @@ $(function() {
   var paths = new Array(links.length);
   var extensionAmount = -1;
 
+  var maxBoxY = 0;
   $('.puzzleGraphBox').each(function(i, elem) {
     setTimeout(function() {
       $(elem).css('visibility','visible');
     }, Math.random() * 1000);
+
+    maxBoxY = Math.max(maxBoxY, $(elem).position().top);
   });
+  $('#puzzleGraphContainer').height(maxBoxY + 100);
 
   setTimeout(function() {
     var extending = setInterval(function() {

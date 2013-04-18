@@ -54,6 +54,10 @@ class PuzzlesController < ApplicationController
       end
       @puzzle_links.uniq!
 
+      @announcements = Announcement.order('"order"').select do |a|
+        @solved_puzzles.include? a.puzzle
+      end
+
       render 'huntindex' and return
     end
 

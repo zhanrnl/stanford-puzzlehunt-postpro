@@ -1,5 +1,7 @@
 PostPro::Application.routes.draw do
 
+  resources :announcements
+
   get 'queue/index'
   match 'queue' => 'queue#index'
   match 'queue/numcallins' => 'queue#get_num_callins'

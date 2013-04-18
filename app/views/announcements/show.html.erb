@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @announcement.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+</p>
+<div><%= @announcement.body %></div>
+
+<p>
+  <b>Puzzle:</b>
+  <%= @announcement.puzzle.puzzle_name %>
+</p>
+
+<p>
+  <b>Order:</b>
+  <%= @announcement.order %>
+</p>
+
+
+<%= link_to 'Edit', edit_announcement_path(@announcement) %> |
+<%= link_to 'Back', announcements_path %>

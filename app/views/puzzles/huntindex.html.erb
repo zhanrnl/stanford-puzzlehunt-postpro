@@ -20,8 +20,8 @@
   <div class="garbage"></div>
   <div class="garbage"></div>
 </div>
-<p class="hacker">Welcome, hackers of team &lt;&lt;&lt;<%= @team_name %>&gt;&gt;&gt;. The Chaos Initiative has infiltrated the Government's internal data intranet servers, giving us direct access to the security firewall network protecting their most sensitive data.</p>
-<p class="hacker">Each module below represents a firewall server, a virtual security blockade that must be destroyed to unlock the next layer. We have provided all the necessary tools. Now it is your job to hack the system and retrieve the P.O.N.I.E.S. for great justice.</p>
+<p class="hacker">Welcome, hackers of team &lt;&lt;&lt;<%= @team_name %>&gt;&gt;&gt;. We are C.H.A.O.S, the Coalition for Hackers Attacking Operations and Systems. The C.H.A.O.S. Initiative has already infiltrated internal data intranet servers of the U.S. Department of Weapons Research, giving us direct access to the security firewall network protecting their most sensitive data.</p>
+<p class="hacker">We have also uncovered the structure of this network. Each module below represents a firewall server, a virtual security blockade that must be destroyed to unlock the next layer. We have provided all the necessary tools. Now it is your job to hack the system and let us take the P.O.N.I.E.S. from the Government's grasp.</p>
 <script type="text/javascript">
 var links = <%= @puzzle_links.to_json.html_safe %>;
 </script>
@@ -44,6 +44,16 @@ var links = <%= @puzzle_links.to_json.html_safe %>;
     <div class="questionMark">?</div>
   </div>
   <% end %>
+  <% end %>
+</div>
+
+<div>
+  <% if @announcements.length > 0 %>
+    <p class="hacker">Important Announcements from C.H.A.O.S.</p>
+    <% @announcements.each do |a| %>
+    <h2 class="hacker"><%= a.title %></h2>
+    <p class="hacker"><%= a.body %></p>
+    <% end %>
   <% end %>
 </div>
 

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417230443) do
+ActiveRecord::Schema.define(:version => 20130418164801) do
+
+  create_table "announcements", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "puzzle_id"
+    t.integer  "order"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "announcements", ["puzzle_id"], :name => "index_announcements_on_puzzle_id"
 
   create_table "callins", :force => true do |t|
     t.integer  "puzzle_id"
