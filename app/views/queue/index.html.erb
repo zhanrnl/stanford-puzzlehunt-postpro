@@ -1,7 +1,7 @@
 <a data-bind="visible: !showCallin()" href="<%= god_url %>">Back to God home</a>
 <h1>Call-in submission queue</h1>
 <p data-bind="visible: !showCallin()">There are currently <span id="numcallins" data-bind="text: numCallins"><%= @num_callins %></span> callins that need response!</p>
-<div data-bind="visible: !showCallin() && numCallins() != '0'"><a data-bind="click: dequeue" href="#">Respond to a call-in</a></div>
+<div data-bind="visible: !showCallin() && numCallins() != '0' && !showProcessing()"><a data-bind="click: dequeue" href="#">Respond to a call-in</a></div>
 <div data-bind="visible: showProcessing()">Processing...</div>
 <div id="callInCont" data-bind="visible: showCallin()" class="hideDefault">
   <div>Call-in from team <b data-bind="text: teamName"></b></div>
@@ -11,10 +11,10 @@
   <div>Team's phone number: <b data-bind="text: phoneNum"></b></div>
   <p>Correct procedure: call the team at their listed phone number here. Ask if it is team "<span data-bind="text: teamName"></span>". Tell them if they are right or wrong, or any other information that they need. Afterward, click one of the buttons below according to whether the answer was wrong or right.</p>
   <p>If you cannot call the team right now, you must click the button to return the call-in back to the queue so another person can answer their call-in.</p>
-  <div><a href="#" data-bind="click: respondCorrect">This answer is CORRECT and this call-in should be removed from the queue</a></div>
-  <div><a href="#" data-bind="click: respondIncorrect">This answer is INCORRECT and this call-in should be removed from the queue</a></div>
-  <div><a href="#" data-bind="click: respondRequeue">I cannot respond right now, this call-in should be readded to the queue</a></div>
-  <div>
+  <div data-bind="visible: !showProcessing()"><a href="#" data-bind="click: respondCorrect">This answer is CORRECT and this call-in should be removed from the queue</a></div>
+  <div data-bind="visible: !showProcessing()"><a href="#" data-bind="click: respondIncorrect">This answer is INCORRECT and this call-in should be removed from the queue</a></div>
+  <div data-bind="visible: !showProcessing()"><a href="#" data-bind="click: respondRequeue">I cannot respond right now, this call-in should be readded to the queue</a></div>
+  <div data-bind="visible: !showProcessing()">
     <p>Alternatively, you could redelegate this call-in to the question queue, especially if you encountered bizarre problems with trying to answer the call-in. In this situation, you are STRONGLY encouraged to add some notes to the box here that will give information to the people manning the question queue.</p>
     <p><textarea data-bind="value: questionNotes" rows="6" cols="80"></textarea></p>
     <p><a href="#" data-bind="click: respondDelegate">This is a weird situation and this call-in should be DELEGATED to the question queue, along with these helpful notes</a></p>

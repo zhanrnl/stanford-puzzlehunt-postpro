@@ -4,6 +4,9 @@
   <title><%= yield :title %></title>
   <%= render "shared/css_link", :src => "main" %>
   <%= render "shared/css_link", :src => "fontface" %>
+  <% if @hackerstyle %>
+  <%= render "shared/css_link", :src => "hackerstyle" %>
+  <% end %>
   <%= render "shared/js_link", :src => "jquery-1.9.1.min" %>
   <%= render "shared/js_link", :src => "rails" %>
   <%= render "shared/js_link", :src => "hackerbase" %>

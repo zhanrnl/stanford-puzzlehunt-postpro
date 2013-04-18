@@ -55,22 +55,61 @@ a:hover {
 
 .puzzleGraphBox {
   text-align: center;
-  color: #3bf;  
-  text-shadow: 0px 0px 12px rgba(0,100,255,1), 0px 0px 12px rgba(0,100,255,1), 0px 0px 12px rgba(0,100,255,1);
   border: 1px solid;
   position: absolute;
   width: 110px;
   float: left;
   padding: 4px;
   background-color: black;
-  box-shadow: 0px 0px 8px rgba(30,130,255,1), 0px 0px 8px rgba(30,130,255,1), 0px 0px 16px rgba(0,0,255,1);
   font-size: 10pt;
 }
 
-.puzzleGraphBox:hover {
+.boxblue {
+  color: #3bf;    
+  text-shadow: 0px 0px 12px rgba(0,100,255,1), 0px 0px 12px rgba(0,100,255,1), 0px 0px 12px rgba(0,100,255,1);
+  box-shadow: 0px 0px 8px rgba(30,130,255,1), 0px 0px 8px rgba(30,130,255,1), 0px 0px 16px rgba(0,0,255,1);
+}
+
+.boxblue:hover {
   color: #cff; 
   text-shadow: 0px 0px 10px rgba(240,240,255,1),  0px 0px 10px rgba(240,240,255,1),  0px 0px 30px rgba(0,150,255,1),  0px 0px 30px rgba(0,150,255,1);
-  box-shadow: 0px 0px 4px rgba(240,240,255,1),  0px 0px 4px rgba(240,240,255,1),  0px 0px 12px rgba(0,150,255,1),  0px 0px 12px rgba(0,150,255,1);
+  box-shadow: 0px 0px 4px rgba(240,240,255,1),  0px 0px 4px rgba(240,240,255,1),  0px 0px 12px rgba(0,150,255,1),  0px 0px 12px rgba(0,150,255,1),  0px 0px 20px rgba(0,150,255,1);
+}
+
+.boxred {
+  color: #f22;
+  text-shadow: 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1);
+  box-shadow: 0px 0px 8px rgba(140,5,0,1), 0px 0px 8px rgba(140,5,0,1), 0px 0px 8px rgba(140,5,0,1);
+}
+
+.boxred:hover {
+  color: #f84; 
+  text-shadow: 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 20px rgba(140,5,0,1), 0px 0px 30px rgba(140,5,0,1), 0px 0px 30px rgba(140,5,0,1);
+  box-shadow: 0px 0px 8px rgba(255,5,0,1), 0px 0px 8px rgba(255,5,0,1), 0px 0px 8px rgba(255,5,0,1), 0px 0px 8px rgba(255,5,0,1), 0px 0px 16px rgba(255,5,0,1),0px 0px 16px rgba(255,5,0,1);
+}
+
+.boxgreen {
+  color: #8f3;
+  text-shadow: 0px 0px 10px rgba(30,140,0,1), 0px 0px 10px rgba(30,140,0,1);
+  box-shadow: 0px 0px 6px rgba(30,140,0,1), 0px 0px 6px rgba(30,140,0,1);
+}
+
+.boxgreen:hover {
+  color: #af4;
+  text-shadow: 0px 0px 10px rgba(30,255,0,1), 0px 0px 10px rgba(30,255,0,1), 0px 0px 10px rgba(30,255,0,1);
+  box-shadow: 0px 0px 10px rgba(30,255,0,1), 0px 0px 10px rgba(30,255,0,1), 0px 0px 10px rgba(30,255,0,1);
+}
+
+.boxwhite {
+  color: #ccc;
+  text-shadow: 0px 0px 10px rgba(100,100,100,1), 0px 0px 10px rgba(100,100,100,1), 0px 0px 10px rgba(100,100,100,1);
+  box-shadow: 0px 0px 10px rgba(100,100,100,1), 0px 0px 10px rgba(100,100,100,1), 0px 0px 10px rgba(100,100,100,1);
+}
+
+.boxwhite:hover {
+  color: #fff;
+  text-shadow: 0px 0px 10px rgba(255,255,255,1), 0px 0px 10px rgba(255,255,255,1), 0px 0px 10px rgba(255,255,255,1);
+  box-shadow: 0px 0px 10px rgba(255,255,255,1), 0px 0px 10px rgba(255,255,255,1), 0px 0px 10px rgba(255,255,255,1);
 }
 
 .grayBox, .grayBox:hover {

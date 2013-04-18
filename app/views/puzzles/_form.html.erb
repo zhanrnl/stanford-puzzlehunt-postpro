@@ -23,6 +23,7 @@
     <li><%= check_box_tag ("neighbor_" + p.id.to_s), 1, (@puzzle.linked_puzzles.include? p) %>&ensp;<%= p.puzzle_name %></li>
     <% end %>
   </ul>
+  <p>Color (should be one of "red", "green", "blue", or "white"): <%= f.text_field :color %></p>
   <p>XY coordinates in the unlocking graph:</p>
   <div>X: <%= f.text_field :xcoord %></div>
   <div>Y: <%= f.text_field :ycoord %></div>

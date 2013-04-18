@@ -16,7 +16,18 @@ class PuzzlesController < ApplicationController
 
       @puzzle_boxes = []
       @puzzles.each do |p|
-        obj = {:id => "p#{p.id}", :nn => p.neighbors_needed, :unlocked => false, :x => p.xcoord, :y => p.ycoord, :solved => false}
+        obj = {:id => "p#{p.id}", :nn => p.neighbors_needed, 
+          :unlocked => false, :x => p.xcoord, :y => p.ycoord, 
+          :solved => false}
+        if p.color == 'blue'
+          obj[:color] = 'boxblue'
+        elsif p.color == 'red'
+          obj[:color] = 'boxred'
+        elsif p.color == 'green'
+          obj[:color] = 'boxgreen'
+        else
+          obj[:color] = 'boxwhite'
+        end
         if @unlocked_puzzles.include? p
           obj[:name] = p.puzzle_name
           obj[:url] = p.internal_name

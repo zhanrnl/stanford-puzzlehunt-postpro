@@ -1,4 +1,5 @@
-<%= render "shared/css_link", :src => "hackerstyle" %>
+<% @hackerstyle = true %>
+
 <script type="text/javascript">$(function(){doFadeIn();});</script>
 <% title "Call-in an answer for #{@puzzle.puzzle_name}" %>
 <div class="garbageContainer dim">

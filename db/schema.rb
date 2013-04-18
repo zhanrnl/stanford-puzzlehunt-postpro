@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415040257) do
+ActiveRecord::Schema.define(:version => 20130417230443) do
 
   create_table "callins", :force => true do |t|
     t.integer  "puzzle_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130415040257) do
     t.integer  "neighbors_needed", :default => 1
     t.integer  "xcoord"
     t.integer  "ycoord"
+    t.string   "color"
   end
 
   create_table "questions", :force => true do |t|

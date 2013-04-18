@@ -1,4 +1,4 @@
-<%= render "shared/css_link", :src => "hackerstyle" %>
+<% @hackerstyle = true %>
 <% title "C.H.A.O.S. Network Root" %>
 <script type="text/javascript">$(function(){doFadeIn();});</script>
 
@@ -29,7 +29,7 @@ var links = <%= @puzzle_links.to_json.html_safe %>;
   <% @puzzle_boxes.each do |pb| %>
   <% if pb[:unlocked] %>
   <a href="/puzzles/<%= pb[:url] %>">
-    <div id="<%= pb[:id] %>" class="puzzleGraphBox<%= pb[:ismeta] ? ' metaBox' : '' %>" style="left: <%= pb[:x] %>px; top: <%= pb[:y] %>px">
+    <div id="<%= pb[:id] %>" class="puzzleGraphBox<%= (pb[:ismeta] ? ' metaBox' : '') + ' ' + pb[:color] %>" style="left: <%= pb[:x] %>px; top: <%= pb[:y] %>px">
         <div class="puzzleName"><%= pb[:name] %></div>
         <% if pb[:solved] %>
         <div class="solved">SOLVED</div>
