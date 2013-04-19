@@ -19,7 +19,7 @@
 <% end %>
 <%= form_for(@question, :url => ask_question_url) do |f| %>
   <div><span class="hacker" shows="group1">Phone number, format must be XXX-XXX-XXXX:</span> <%= f.text_field :phone_num, :class => :group1 %></div>
-  <p class="hacker" shows="subbtn">Type your question here. If your question concerns a specific puzzle, you must indicate the name of that puzzle here.</p><p class="hacker">OTHER HELP TEXT GOES HERE GIVE EXAMPLE QUERIES</p>
+  <p class="hacker" shows="subbtn">Type your question here. If your question concerns a specific puzzle, you must indicate the name of that puzzle here. For example, if you have at least 100 CPU priority points, you may use this question queue to request to buy a puzzle answer.</p><b class="hacker">In case of emergency, do not use this form. Instead, call HQ at our emergency number 650-204-0787.</b></p>
   <p><%= f.text_area :question, :rows => 10, :cols => 80, :class => :ta %></p>
   <%= f.submit "Ask the question", :class => "subbtn" %>
 <% end %>

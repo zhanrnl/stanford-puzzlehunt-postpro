@@ -22,3 +22,7 @@
 every '0,15,30,45 11-20 20 4 *' do
   rake "addpoints"
 end
+
+every '0,10,20,30,40,50 * 19-20 4 *' do
+  command "d=$(date +%F-%H-%M);fn=\"$d.sqlite3.bak\";cp db/production.sqlite3 dbback/$fn"
+end

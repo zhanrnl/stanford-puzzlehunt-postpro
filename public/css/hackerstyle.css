@@ -149,7 +149,7 @@ a:hover {
   height: 100%;
 }
 
-.govt p, .govt h1, .govt h2, .govt h3, .govt div, .govt span {
+.govt p, .govt h1, .govt h2, .govt h3, .govt div, .govt span, .govt b, .govt i {
   font-family: 'Arial', sans-serif;
 }
 
@@ -188,3 +188,4 @@ a:hover {
   padding: 12px 0 0 110px;
   color: white;
 }
+
