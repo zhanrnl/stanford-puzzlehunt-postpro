@@ -216,7 +216,11 @@ class PuzzlesController < ApplicationController
   def god
     kick and return if not is_god?
 
-    @teams = Team.all
+    @teams = Team.all.to_a
+    @teams = @teams.sort_by do |t| 
+      puts t.num_total_puzzles_solved
+      t.num_total_puzzles_solved
+    end.reverse
   end
 
   def callin
