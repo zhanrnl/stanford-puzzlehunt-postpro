@@ -49,10 +49,10 @@ var links = <%= @puzzle_links.to_json.html_safe %>;
 
 <div>
   <% if @announcements.length > 0 %>
-    <p class="hacker">Important Announcements from C.H.A.O.S.</p>
+    <h1>&lt;&lt;&lt;<span class="hacker">Important Announcements</span>&gt;&gt;&gt;</h1>
     <% @announcements.each do |a| %>
     <h2 class="hacker"><%= a.title %></h2>
-    <p class="hacker"><%= a.body %></p>
+    <p><%= a.body %></p>
     <% end %>
   <% end %>
 </div>

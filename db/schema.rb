@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418173347) do
+ActiveRecord::Schema.define(:version => 20130420023818) do
 
   create_table "announcements", :force => true do |t|
     t.string   "title"
     t.text     "body"
     t.integer  "puzzle_id"
     t.integer  "order"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "starts_unlocked", :default => false
   end
 
   add_index "announcements", ["puzzle_id"], :name => "index_announcements_on_puzzle_id"

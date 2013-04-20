@@ -27,6 +27,10 @@
     <%= f.label 'Ordering used for displaying announcements on home page. Lower numbers are higher up in list, closer to top of page' %><br />
     <%= f.number_field :order %>
   </div>
+  <div class="field">
+    <%= f.label 'Starts unlocked (viewable to all teams regardless of puzzles solved)' %><br />
+    <%= f.check_box :starts_unlocked %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

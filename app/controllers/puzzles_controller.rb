@@ -57,7 +57,7 @@ class PuzzlesController < ApplicationController
       @puzzle_links.uniq!
 
       @announcements = Announcement.order('"order"').select do |a|
-        @solved_puzzles.include? a.puzzle
+        a.starts_unlocked or @solved_puzzles.include? a.puzzle
       end
 
       render 'huntindex' and return

@@ -3,7 +3,7 @@ class AnnouncementsController < ApplicationController
   # GET /announcements.json
   def index
     kick and return if not is_god?
-    @announcements = Announcement.all
+    @announcements = Announcement.order('"order"')
 
     respond_to do |format|
       format.html # index.html.erb
