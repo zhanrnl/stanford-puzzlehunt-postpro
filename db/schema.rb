@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420023818) do
+ActiveRecord::Schema.define(:version => 20130507214127) do
 
   create_table "announcements", :force => true do |t|
     t.string   "title"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20130420023818) do
     t.integer  "xcoord"
     t.integer  "ycoord"
     t.string   "color"
+    t.text     "solution"
   end
 
   create_table "questions", :force => true do |t|

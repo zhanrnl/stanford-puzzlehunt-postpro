@@ -228,12 +228,12 @@ class PuzzlesController < ApplicationController
     if @puzzle.nil? or not is_unlocked?(@puzzle)
       raise ActionController::RoutingError.new('Puzzle not found') 
     end
-    team = get_team
-    @solved = Solve.where('puzzle_id = ? AND team_id = ?', @puzzle.id, team.id).first
+    @team = get_team
+    @solved = Solve.where('puzzle_id = ? AND team_id = ?', @puzzle.id, @team.id).first
     if @solved.nil?
       @callin = Callin.new
     end
-    @previous_callins = Callin.where('puzzle_id = ? AND team_id = ?', @puzzle.id, team.id).to_a
+    @previous_callins = Callin.where('puzzle_id = ? AND team_id = ?', @puzzle.id, @team.id).to_a
   end
 
   def process_answer answer

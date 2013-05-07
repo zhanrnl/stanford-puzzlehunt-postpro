@@ -2,6 +2,8 @@
 
 <script type="text/javascript">$(function(){doFadeIn();});</script>
 <% title "Call-in an answer for #{@puzzle.puzzle_name}" %>
+
+<% if @team.internal_name != 'chaos' %>
 <div class="garbageContainer dim">
   <div class="garbage"></div>
   <div class="garbage"></div>
@@ -48,3 +50,12 @@
   <div class="garbage"></div>
   <div class="garbage"></div>
 </div>
+
+
+<% else %>
+<%= link_to "Back to puzzle", puzzle_url_name(@puzzle), :class => :hacker %>
+<% content_for :govt do %>
+  <h1>Solution for <%= @puzzle.puzzle_name %></h1>
+  <%= @puzzle.solution.html_safe %>
+<% end %>
+<% end %>
