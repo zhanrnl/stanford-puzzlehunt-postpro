@@ -56,6 +56,10 @@
 <%= link_to "Back to puzzle", puzzle_url_name(@puzzle), :class => :hacker %>
 <% content_for :govt do %>
   <h1>Solution for <%= @puzzle.puzzle_name %></h1>
+  <% if @puzzle.solution.nil? %>
+  <p>Sorry, solution has not been written up yet.</p>
+  <% else %>
   <%= @puzzle.solution.html_safe %>
+  <% end %>
 <% end %>
 <% end %>
